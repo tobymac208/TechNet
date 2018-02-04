@@ -2,6 +2,7 @@ package com.nik;
 
 import com.nik.Box.ConfirmBox;
 import com.nik.Box.DisplayViewBox;
+import com.nik.Box.UserBoxes;
 import com.nik.Model.Account;
 import com.nik.Model.AccountsList;
 import javafx.application.Application;
@@ -81,7 +82,7 @@ public class Main extends Application {
                     passwordField.clear();
 
                     // Open logged in window
-
+                    UserBoxes.displayHome(checkerAccount);
                 }else{
                     errorLabel.setStyle("-fx-text-fill: red");
                     errorLabel.setText("ERROR: Wrong password");

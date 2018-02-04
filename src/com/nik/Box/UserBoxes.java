@@ -6,6 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -24,8 +25,8 @@ public class UserBoxes {
 //      TOP Objects
         Button logoutButton = new Button("Logout of " + currentAccount.getUsername());
         Button settingsButton = new Button("Settings for " + currentAccount.getUsername());
-//      CENTER objects
-
+//      LEFT objects
+        Button inventoryButton = new Button("Inventory");
 
 //      Events
         logoutButton.setOnAction(event -> {
@@ -36,11 +37,20 @@ public class UserBoxes {
         settingsButton.setOnAction(event -> {
             // Open settings window
         });
+        window.setOnCloseRequest(event -> {
+            event.consume();
+            boolean answer = ConfirmBox.display("Logout", "Are you sure you want to logout?");
+            if(answer) // if the answer is yes
+                window.close(); // close the window
+        });
 
 //      Layout
 //      TOP layout
-        HBox topLayout = new HBox();
+        HBox topLayout = new HBox(10);
         topLayout.getChildren().setAll(logoutButton, settingsButton);
+//      LEFT layout
+        VBox leftLayout = new VBox(10);
+        leftLayout.getChildren().addAll(inventoryButton);
 //      MAIN layout
         BorderPane mainLayout = new BorderPane();
         mainLayout.setTop(topLayout);
